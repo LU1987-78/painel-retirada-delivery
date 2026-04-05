@@ -4,15 +4,16 @@ import { useVoiceAlert } from '@/hooks/useVoiceAlert';
 import { OrderCard } from '@/components/OrderCard';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Plus, Volume2, VolumeX } from 'lucide-react';
+import { Plus, Volume2, VolumeX, Speaker } from 'lucide-react';
 
 /**
- * Painel de Retirada Delivery - Design Industrial Minimalist
+ * Painel de Retirada Delivery - Novo Design
  * 
- * Layout: 2 colunas fixas (Em Preparo | Pronto para Retirada)
- * Tipografia: JetBrains Mono (números) + IBM Plex Sans (labels)
- * Paleta: Preto + Branco + Laranja (#FF6B35) + Verde (#00D084)
- * Animações: Transições suaves, pulsos ao marcar pronto, slides entre colunas
+ * Layout: Lista vertical com cards
+ * Header: Vermelho (Em Preparo) / Verde (Pronto)
+ * Borda: Piscante amarela para pedidos prontos
+ * Fundo: Azul escuro (#1e3a8a)
+ * Alerta: Visual com ícone de som na base
  */
 
 export default function Home() {
@@ -23,6 +24,10 @@ export default function Home() {
   const [newOrderNumber, setNewOrderNumber] = useState('');
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [lastReadyOrderId, setLastReadyOrderId] = useState<string | null>(null);
+  const [lastVoiceAlert, setLastVoiceAlert] = useState<{
+    number: string;
+    visible: boolean;
+  } | null>(null);
   const [autoRemoveTimer, setAutoRemoveTimer] = useState<{
     [key: string]: NodeJS.Timeout;
   }>({});
@@ -33,8 +38,16 @@ export default function Home() {
       const lastOrder = readyOrders[0];
       if (lastOrder.id !== lastReadyOrderId) {
         setLastReadyOrderId(lastOrder.id);
-        const message = `Atenção! Pedido número ${lastOrder.number} está pronto para retirada`;
+        const message = `Atenção! Pedido número ${lastOrder.number} está pronto paa retirada`;
         speak(message, 2); // Repetir 2 vezes
+
+        // Mostrar alerta visual
+        setLastVoiceAlert({ number: lastOrder.number, visible: true });
+        setTimeout(() => {
+          setLastVoiceAlert((prev) =>
+            prev ? { ...prev, visible: false } : null
+          );
+        }, 5000); // Desaparecer após 5 segundos
       }
     }
   }, [readyOrders, soundEnabled, lastReadyOrderId, speak]);
@@ -84,13 +97,15 @@ export default function Home() {
     setSoundEnabled(!soundEnabled);
   };
 
+  const allOrders = [...preparingOrders, ...readyOrders];
+
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
       {/* Header */}
       <header className="bg-card border-b border-border p-6 shadow-lg">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="font-display text-4xl mb-2">
+            <h1 className="font-display text-3xl md:text-4xl mb-2">
               PAINEL DE RETIRADA DELIVERY
             </h1>
             <p className="font-body text-muted-foreground">
@@ -98,32 +113,28 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Controles */}
-          <div className="flex items-center gap-4">
-            <Button
-              onClick={toggleSound}
-              variant={soundEnabled ? 'default' : 'outline'}
-              className="font-accent"
-            >
-              {soundEnabled ? (
-                <>
-                  <Volume2 className="w-4 h-4 mr-2" />
-                  Som Ativo
-                </>
-              ) : (
-                <>
-                  <VolumeX className="w-4 h-4 mr-2" />
-                  Som Desativo
-                </>
-              )}
-            </Button>
-          </div>
+          {/* Botão de Som */}
+          <Button
+            onClick={toggleSound}
+            variant={soundEnabled ? 'default' : 'outline'}
+            className="font-accent"
+          >
+            {soundEnabled ? (
+              <>
+                <Volume2 className="w-4 h-4 mr-2" />
+                Som Ativo
+              </>
+            ) : (
+              <>
+                <VolumeX className="w-4 h-4 mr-2" />
+                Som Desativo
+              </>
+            )}
+          </Button>
         </div>
-      </header>
 
-      {/* Seção de Novo Pedido */}
-      <div className="bg-card border-b border-border p-6">
-        <div className="flex gap-4 items-end">
+        {/* Input de Novo Pedido */}
+        <div className="flex gap-3 items-end">
           <div className="flex-1">
             <label className="font-accent text-sm block mb-2">
               Número do Pedido
@@ -134,79 +145,54 @@ export default function Home() {
               value={newOrderNumber}
               onChange={(e) => setNewOrderNumber(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="font-display text-xl"
+              className="font-display text-lg"
               autoFocus
             />
           </div>
           <Button
             onClick={handleAddOrder}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 font-accent h-10"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-accent h-10 whitespace-nowrap"
           >
             <Plus className="w-4 h-4 mr-2" />
             Novo Pedido
           </Button>
         </div>
-      </div>
+      </header>
 
-      {/* Painel Principal - 2 Colunas */}
-      <div className="flex flex-1 min-h-[calc(100vh-280px)]">
-        {/* Coluna Esquerda - Em Preparo */}
-        <div className="flex-1 border-r border-border bg-black p-8 overflow-y-auto">
-          <div className="mb-8">
-            <h2 className="font-display text-2xl text-primary mb-6 flex items-center gap-3">
-              <span className="w-4 h-4 bg-primary rounded-full"></span>
-              EM PREPARO
-            </h2>
-
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              {preparingOrders.length === 0 ? (
-                <div className="col-span-full text-center py-12">
-                  <p className="font-body text-muted-foreground text-lg">
-                    Nenhum pedido em preparo
-                  </p>
-                </div>
-              ) : (
-                preparingOrders.map((order) => (
-                  <OrderCard
-                    key={order.id}
-                    order={order}
-                    onMarkReady={markAsReady}
-                  />
-                ))
-              )}
+      {/* Conteúdo Principal */}
+      <main className="flex-1 overflow-y-auto p-6">
+        <div className="max-w-2xl mx-auto space-y-4">
+          {allOrders.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="font-body text-muted-foreground text-lg">
+                Nenhum pedido no momento
+              </p>
             </div>
+          ) : (
+            allOrders.map((order, index) => (
+              <OrderCard
+                key={order.id}
+                order={order}
+                onMarkReady={markAsReady}
+                onRemove={removeOrder}
+                isBlinking={order.status === 'ready' && index === preparingOrders.length}
+              />
+            ))
+          )}
+        </div>
+      </main>
+
+      {/* Alerta de Voz Visual */}
+      {lastVoiceAlert?.visible && (
+        <div className="voice-alert mx-6 mb-6">
+          <Speaker className="w-5 h-5" />
+          <div>
+            <span className="font-accent">Atenção! Pedido número</span>
+            <span className="font-display ml-2 text-lg">{lastVoiceAlert.number}</span>
+            <span className="font-accent ml-2">está pronto paa retirada</span>
           </div>
         </div>
-
-        {/* Coluna Direita - Pronto para Retirada */}
-        <div className="flex-1 bg-black p-8 overflow-y-auto">
-          <div className="mb-8">
-            <h2 className="font-display text-2xl text-secondary mb-6 flex items-center gap-3">
-              <span className="w-4 h-4 bg-secondary rounded-full"></span>
-              PRONTO PARA RETIRADA
-            </h2>
-
-            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-              {readyOrders.length === 0 ? (
-                <div className="col-span-full text-center py-12">
-                  <p className="font-body text-muted-foreground text-lg">
-                    Nenhum pedido pronto
-                  </p>
-                </div>
-              ) : (
-                readyOrders.map((order, index) => (
-                  <OrderCard
-                    key={order.id}
-                    order={order}
-                    onRemove={removeOrder}
-                    isBlinking={index === 0} // Piscar apenas o primeiro (mais recente)
-                  />
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
+      )}
     </div>
   );
 }

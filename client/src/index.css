@@ -43,76 +43,76 @@
 }
 
 :root {
-  /* Industrial Minimalist Palette */
-  --primary: #FF6B35; /* Laranja Queimado */
+  /* Novo Design - Fundo Azul Escuro */
+  --primary: #EF4444; /* Vermelho para Em Preparo */
   --primary-foreground: #FFFFFF;
-  --sidebar-primary: #FF6B35;
+  --sidebar-primary: #EF4444;
   --sidebar-primary-foreground: #FFFFFF;
-  --chart-1: #FF6B35;
-  --chart-2: #FF6B35;
-  --chart-3: #FF6B35;
-  --chart-4: #FF6B35;
-  --chart-5: #FF6B35;
-  --radius: 0rem;
-  --background: #000000;
+  --chart-1: #EF4444;
+  --chart-2: #EF4444;
+  --chart-3: #EF4444;
+  --chart-4: #EF4444;
+  --chart-5: #EF4444;
+  --radius: 1rem;
+  --background: #1e3a8a; /* Azul escuro */
   --foreground: #FFFFFF;
-  --card: #1A1A1A;
+  --card: #2d5a96;
   --card-foreground: #FFFFFF;
-  --popover: #1A1A1A;
+  --popover: #2d5a96;
   --popover-foreground: #FFFFFF;
-  --secondary: #00D084; /* Verde Elétrico */
+  --secondary: #22c55e; /* Verde para Pronto */
   --secondary-foreground: #000000;
-  --muted: #666666;
-  --muted-foreground: #CCCCCC;
-  --accent: #00D084;
+  --muted: #64748b;
+  --muted-foreground: #e2e8f0;
+  --accent: #fbbf24; /* Amarelo para borda piscante */
   --accent-foreground: #000000;
-  --destructive: #FF6B35;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #333333;
-  --input: #2A2A2A;
-  --ring: #FF6B35;
-  --sidebar: #1A1A1A;
+  --border: #3b82f6;
+  --input: #1e40af;
+  --ring: #fbbf24;
+  --sidebar: #1e3a8a;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-accent: #00D084;
+  --sidebar-accent: #22c55e;
   --sidebar-accent-foreground: #000000;
-  --sidebar-border: #333333;
-  --sidebar-ring: #FF6B35;
+  --sidebar-border: #3b82f6;
+  --sidebar-ring: #fbbf24;
 }
 
 .dark {
-  /* Same as root for Industrial Minimalist */
-  --primary: #FF6B35;
+  /* Same as root */
+  --primary: #EF4444;
   --primary-foreground: #FFFFFF;
-  --sidebar-primary: #FF6B35;
+  --sidebar-primary: #EF4444;
   --sidebar-primary-foreground: #FFFFFF;
-  --background: #000000;
+  --background: #1e3a8a;
   --foreground: #FFFFFF;
-  --card: #1A1A1A;
+  --card: #2d5a96;
   --card-foreground: #FFFFFF;
-  --popover: #1A1A1A;
+  --popover: #2d5a96;
   --popover-foreground: #FFFFFF;
-  --secondary: #00D084;
+  --secondary: #22c55e;
   --secondary-foreground: #000000;
-  --muted: #666666;
-  --muted-foreground: #CCCCCC;
-  --accent: #00D084;
+  --muted: #64748b;
+  --muted-foreground: #e2e8f0;
+  --accent: #fbbf24;
   --accent-foreground: #000000;
-  --destructive: #FF6B35;
+  --destructive: #EF4444;
   --destructive-foreground: #FFFFFF;
-  --border: #333333;
-  --input: #2A2A2A;
-  --ring: #FF6B35;
-  --chart-1: #FF6B35;
-  --chart-2: #FF6B35;
-  --chart-3: #FF6B35;
-  --chart-4: #FF6B35;
-  --chart-5: #FF6B35;
-  --sidebar: #1A1A1A;
+  --border: #3b82f6;
+  --input: #1e40af;
+  --ring: #fbbf24;
+  --chart-1: #EF4444;
+  --chart-2: #EF4444;
+  --chart-3: #EF4444;
+  --chart-4: #EF4444;
+  --chart-5: #EF4444;
+  --sidebar: #1e3a8a;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-accent: #00D084;
+  --sidebar-accent: #22c55e;
   --sidebar-accent-foreground: #000000;
-  --sidebar-border: #333333;
-  --sidebar-ring: #FF6B35;
+  --sidebar-border: #3b82f6;
+  --sidebar-ring: #fbbf24;
 }
 
 @layer base {
@@ -136,24 +136,11 @@
 }
 
 @layer components {
-  /**
-   * Custom container utility that centers content and adds responsive padding.
-   *
-   * This overrides Tailwind's default container behavior to:
-   * - Auto-center content (mx-auto)
-   * - Add responsive horizontal padding
-   * - Set max-width for large screens
-   *
-   * Usage: <div className="container">...</div>
-   *
-   * For custom widths, use max-w-* utilities directly:
-   * <div className="max-w-6xl mx-auto px-4">...</div>
-   */
   .container {
     width: 100%;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem; /* 16px - mobile padding */
+    padding-left: 1rem;
     padding-right: 1rem;
   }
 
@@ -164,21 +151,21 @@
 
   @media (min-width: 640px) {
     .container {
-      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
   }
 
   @media (min-width: 1024px) {
     .container {
-      padding-left: 2rem; /* 32px - desktop padding */
+      padding-left: 2rem;
       padding-right: 2rem;
-      max-width: 1280px; /* Standard content width */
+      max-width: 1280px;
     }
   }
 }
 
-/* Industrial Minimalist - Painel de Retirada Delivery */
+/* Novo Design - Layout Vertical com Cards */
 
 /* Tipografia */
 .font-display {
@@ -200,54 +187,78 @@
 /* Número do Pedido - Responsivo com clamp */
 .order-number {
   font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(40px, 8vw, 90px);
+  font-size: clamp(36px, 6vw, 72px);
   font-weight: 700;
   line-height: 1;
   width: 100%;
   overflow: hidden;
   word-break: break-all;
   text-align: center;
+  margin: 1rem 0;
 }
 
-/* Card de Pedido */
+/* Card de Pedido - Novo Layout */
 .order-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-  min-height: 200px;
-  border: none;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 3px solid transparent;
 }
 
-.order-card.preparing {
-  background-color: #FF6B35;
+/* Header do Card */
+.order-card-header {
+  padding: 1rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-align: center;
   color: #FFFFFF;
 }
 
-.order-card.ready {
-  background-color: #00D084;
-  color: #000000;
+.order-card.preparing .order-card-header {
+  background-color: #EF4444;
 }
 
-/* Animação de piscar */
-@keyframes pulse-blink {
+.order-card.ready .order-card-header {
+  background-color: #22c55e;
+}
+
+/* Conteúdo do Card */
+.order-card-content {
+  background-color: #2d5a96;
+  color: #FFFFFF;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Botão dentro do card */
+.order-card-button {
+  margin-top: 0.5rem;
+}
+
+/* Animação de borda piscante para pedidos prontos */
+@keyframes border-blink {
   0%, 100% {
-    opacity: 1;
+    border-color: #fbbf24;
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.5), 0 8px 24px rgba(0, 0, 0, 0.3);
   }
   50% {
-    opacity: 0.6;
+    border-color: transparent;
+    box-shadow: 0 0 0px rgba(251, 191, 36, 0), 0 8px 24px rgba(0, 0, 0, 0.3);
   }
 }
 
-.order-card.blinking {
-  animation: pulse-blink 0.5s ease-in-out 3;
+.order-card.ready.blinking {
+  animation: border-blink 0.6s ease-in-out infinite;
 }
 
 /* Animação de entrada */
-@keyframes slide-in {
+@keyframes slide-in-up {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -259,36 +270,44 @@
 }
 
 .order-card.entering {
-  animation: slide-in 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slide-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Animação de transição entre colunas */
-@keyframes slide-to-right {
+/* Animação de saída */
+@keyframes slide-out-down {
   from {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: translateX(100px);
-  }
-}
-
-@keyframes slide-from-left {
-  from {
-    opacity: 0;
-    transform: translateX(-100px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+    transform: translateY(20px);
   }
 }
 
 .order-card.moving-out {
-  animation: slide-to-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slide-out-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.order-card.moving-in {
-  animation: slide-from-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Alerta de Voz Visual */
+.voice-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: rgba(251, 191, 36, 0.1);
+  border-left: 4px solid #fbbf24;
+  border-radius: 0.5rem;
+  color: #fbbf24;
+  font-weight: 600;
+  animation: fade-in 0.3s ease-in-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
