@@ -43,50 +43,41 @@ export function OrderCard({
     }
   };
 
-  const statusClass = order.status === 'preparing' ? 'preparing' : 'ready';
   const blinkClass = isBlinking && order.status === 'ready' ? 'blinking' : '';
   const fullAnimationClass = `${animationClass} ${blinkClass}`.trim();
 
   return (
-    <div className={`order-card ${statusClass} ${fullAnimationClass}`}>
-      {/* Header com Status */}
-      <div className="order-card-header">
-        {order.status === 'preparing' ? 'EM PREPARO' : 'PRONTO'}
+    <div className={`order-card-column ${fullAnimationClass}`}>
+      {/* Número do Pedido - Grande e Bem Contido */}
+      <div className="order-number text-white font-bold">{order.number}</div>
+
+      {/* Status em Texto */}
+      <div className="font-accent text-white text-center text-sm font-bold tracking-wide">
+        {order.status === 'preparing' ? 'PREPARANDO' : 'PRONTO'}
       </div>
 
-      {/* Conteúdo do Card */}
-      <div className="order-card-content">
-        {/* Número do Pedido */}
-        <div className="order-number">{order.number}</div>
-
-        {/* Status em Texto */}
-        <div className="font-accent text-sm">
-          {order.status === 'preparing' ? 'PREPARANDO' : 'PRONTO'}
-        </div>
-
-        {/* Botão de Ação */}
-        <div className="order-card-button w-full">
-          {order.status === 'preparing' ? (
-            <Button
-              onClick={handleMarkReady}
-              className="w-full bg-gray-700 hover:bg-gray-600 text-white font-accent"
-              size="sm"
-            >
-              <CheckCircle className="w-4 h-4 mr-2" />
-              Marcar como pronto
-            </Button>
-          ) : (
-            <Button
-              onClick={handleRemove}
-              variant="outline"
-              className="w-full border-gray-600 text-white hover:bg-gray-700 font-accent"
-              size="sm"
-            >
-              <Trash2 className="w-4 h-4 mr-2" />
-              Retirado
-            </Button>
-          )}
-        </div>
+      {/* Botão de Ação */}
+      <div className="order-card-button w-full">
+        {order.status === 'preparing' ? (
+          <Button
+            onClick={handleMarkReady}
+            className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold text-sm rounded-lg py-3 transition-all"
+            size="sm"
+          >
+            <CheckCircle className="w-4 h-4 mr-2" />
+            Marcar como pronto
+          </Button>
+        ) : (
+          <Button
+            onClick={handleRemove}
+            variant="outline"
+            className="w-full border-2 border-white text-white hover:bg-white/20 font-bold text-sm rounded-lg py-3 transition-all"
+            size="sm"
+          >
+            <Trash2 className="w-4 h-4 mr-2" />
+            Retirado
+          </Button>
+        )}
       </div>
     </div>
   );

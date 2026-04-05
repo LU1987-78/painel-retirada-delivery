@@ -43,76 +43,76 @@
 }
 
 :root {
-  /* Novo Design - Fundo Azul Escuro */
-  --primary: #EF4444; /* Vermelho para Em Preparo */
+  /* Design Profissional - Tipo McDonald's */
+  --primary: #DA291C; /* Vermelho vibrante para Em Preparo */
   --primary-foreground: #FFFFFF;
-  --sidebar-primary: #EF4444;
+  --sidebar-primary: #DA291C;
   --sidebar-primary-foreground: #FFFFFF;
-  --chart-1: #EF4444;
-  --chart-2: #EF4444;
-  --chart-3: #EF4444;
-  --chart-4: #EF4444;
-  --chart-5: #EF4444;
-  --radius: 1rem;
-  --background: #1e3a8a; /* Azul escuro */
-  --foreground: #FFFFFF;
-  --card: #2d5a96;
-  --card-foreground: #FFFFFF;
-  --popover: #2d5a96;
-  --popover-foreground: #FFFFFF;
-  --secondary: #22c55e; /* Verde para Pronto */
-  --secondary-foreground: #000000;
-  --muted: #64748b;
-  --muted-foreground: #e2e8f0;
-  --accent: #fbbf24; /* Amarelo para borda piscante */
-  --accent-foreground: #000000;
-  --destructive: #EF4444;
+  --chart-1: #DA291C;
+  --chart-2: #DA291C;
+  --chart-3: #DA291C;
+  --chart-4: #DA291C;
+  --chart-5: #DA291C;
+  --radius: 0.75rem;
+  --background: #FFFFFF; /* Fundo branco limpo */
+  --foreground: #1a1a1a;
+  --card: #F5F5F5;
+  --card-foreground: #1a1a1a;
+  --popover: #FFFFFF;
+  --popover-foreground: #1a1a1a;
+  --secondary: #27AE60; /* Verde vibrante para Pronto */
+  --secondary-foreground: #FFFFFF;
+  --muted: #999999;
+  --muted-foreground: #666666;
+  --accent: #FFC72C; /* Amarelo ouro para destaque */
+  --accent-foreground: #1a1a1a;
+  --destructive: #DA291C;
   --destructive-foreground: #FFFFFF;
-  --border: #3b82f6;
-  --input: #1e40af;
-  --ring: #fbbf24;
-  --sidebar: #1e3a8a;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-accent: #22c55e;
-  --sidebar-accent-foreground: #000000;
-  --sidebar-border: #3b82f6;
-  --sidebar-ring: #fbbf24;
+  --border: #EEEEEE;
+  --input: #F9F9F9;
+  --ring: #FFC72C;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-accent: #27AE60;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #EEEEEE;
+  --sidebar-ring: #FFC72C;
 }
 
 .dark {
   /* Same as root */
-  --primary: #EF4444;
+  --primary: #DA291C;
   --primary-foreground: #FFFFFF;
-  --sidebar-primary: #EF4444;
+  --sidebar-primary: #DA291C;
   --sidebar-primary-foreground: #FFFFFF;
-  --background: #1e3a8a;
-  --foreground: #FFFFFF;
-  --card: #2d5a96;
-  --card-foreground: #FFFFFF;
-  --popover: #2d5a96;
-  --popover-foreground: #FFFFFF;
-  --secondary: #22c55e;
-  --secondary-foreground: #000000;
-  --muted: #64748b;
-  --muted-foreground: #e2e8f0;
-  --accent: #fbbf24;
-  --accent-foreground: #000000;
-  --destructive: #EF4444;
+  --background: #FFFFFF;
+  --foreground: #1a1a1a;
+  --card: #F5F5F5;
+  --card-foreground: #1a1a1a;
+  --popover: #FFFFFF;
+  --popover-foreground: #1a1a1a;
+  --secondary: #27AE60;
+  --secondary-foreground: #FFFFFF;
+  --muted: #999999;
+  --muted-foreground: #666666;
+  --accent: #FFC72C;
+  --accent-foreground: #1a1a1a;
+  --destructive: #DA291C;
   --destructive-foreground: #FFFFFF;
-  --border: #3b82f6;
-  --input: #1e40af;
-  --ring: #fbbf24;
-  --chart-1: #EF4444;
-  --chart-2: #EF4444;
-  --chart-3: #EF4444;
-  --chart-4: #EF4444;
-  --chart-5: #EF4444;
-  --sidebar: #1e3a8a;
-  --sidebar-foreground: #FFFFFF;
-  --sidebar-accent: #22c55e;
-  --sidebar-accent-foreground: #000000;
-  --sidebar-border: #3b82f6;
-  --sidebar-ring: #fbbf24;
+  --border: #EEEEEE;
+  --input: #F9F9F9;
+  --ring: #FFC72C;
+  --chart-1: #DA291C;
+  --chart-2: #DA291C;
+  --chart-3: #DA291C;
+  --chart-4: #DA291C;
+  --chart-5: #DA291C;
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-accent: #27AE60;
+  --sidebar-accent-foreground: #FFFFFF;
+  --sidebar-border: #EEEEEE;
+  --sidebar-ring: #FFC72C;
 }
 
 @layer base {
@@ -310,4 +310,63 @@
   to {
     opacity: 1;
   }
+}
+
+
+/* Cards para Layout de 2 Colunas - Design Profissional */
+.order-card-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  min-height: 220px;
+  border-radius: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 4px solid transparent;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 1.25rem;
+}
+
+/* Borda piscante para cards prontos */
+.order-card-column.blinking {
+  animation: column-border-blink 0.6s ease-in-out infinite;
+}
+
+@keyframes column-border-blink {
+  0%, 100% {
+    border-color: #fbbf24;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.6), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    border-color: transparent;
+    box-shadow: 0 0 0px rgba(251, 191, 36, 0), 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Número do Pedido - Bem Contido e Profissional */
+.order-card-column .order-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(48px, 6vw, 90px);
+  font-weight: 900;
+  line-height: 1;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  word-break: break-word;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: clip;
+  letter-spacing: -0.02em;
+}
+
+/* Animações para cards */
+.order-card-column.entering {
+  animation: slide-in-up 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.order-card-column.moving-out {
+  animation: slide-out-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
